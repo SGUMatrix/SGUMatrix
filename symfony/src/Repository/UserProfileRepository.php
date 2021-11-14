@@ -4,8 +4,10 @@ namespace App\Repository;
 
 use App\Entity\UserProfile;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
+use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 
@@ -34,6 +36,29 @@ class UserProfileRepository extends ServiceEntityRepository implements PasswordU
         $user->setPassword($newHashedPassword);
         $this->_em->persist($user);
         $this->_em->flush();
+    }
+
+
+    /**
+     * @param string $username
+     * @return UserProfile|null
+     */
+    public function findOneByUsername(string $username): ?UserProfile
+    {
+        $usernameLower = mb_strtolower($username);
+
+        $user = $this->createQueryBuilder('u');
+
+        $user = $user->where('LOWER(u.username) = :username')
+        ->setParameter('username', $usernameLower);
+
+        try {
+            $user = $user->getQuery()->getOneOrNullResult();
+        } catch (NonUniqueResultException $e) {
+            throw new UsernameNotFoundException('Unable to find user "' . $username . '"');
+        }
+
+        return $user;
     }
 
     // /**
