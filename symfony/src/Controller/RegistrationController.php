@@ -45,7 +45,7 @@ class RegistrationController extends AbstractController
         if ($username) {
             return new JsonResponse(['success' => false, 'message' => 'Пользователь с таким логином уже существует']);
         } else {
-            $user->setUsername($username);
+            $user->setUsername($data['username']);
         }
 
         $phone = $this->userProfileRepository->findOneBy(['phone' => $data['phone']]);

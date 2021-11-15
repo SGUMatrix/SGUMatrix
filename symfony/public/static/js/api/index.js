@@ -60,7 +60,7 @@ export const api = {
     );
   },
   signUp(userInfo) {
-    return baseInstance.post('/registration', userInfo);
+    return baseInstance.post('/login', userInfo);
   },
   resetPassword(email) {
     return baseInstance.post('/registration/restore-password', { email });

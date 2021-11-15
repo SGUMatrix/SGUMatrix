@@ -3,7 +3,7 @@ import { baseInstance } from './index';
 
 export const signUp = userInfo =>
   baseInstance({
-    url: '/registration',
+    url: '/login',
     method: 'post',
     data: userInfo,
   });
