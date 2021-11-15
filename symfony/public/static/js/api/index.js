@@ -55,8 +55,8 @@ export const api = {
   },
   signIn(credentials) {
     return baseInstance.post(
-      '/oauth/v2/token',
-      createFormDataObj({ ...credentials, grant_type: 'password' }),
+      '/login',
+        credentials,
     );
   },
   signUp(userInfo) {
@@ -67,14 +67,14 @@ export const api = {
   },
   // User
   getUserInfo() {
-    return baseInstance.get('/api/user');
+    return baseInstance.get('/api/user-profile-profile');
   },
   updateAvatar(avatar) {
-    return baseInstance.post('/api/user/avatar', createFormDataObj({ avatar }));
+    return baseInstance.post('/api/user-profile/avatar', createFormDataObj({ avatar }));
   },
   searchUserByLogin({ user_name, matrix_type }) {
     return baseInstance.get(
-      `/api/user/find?user_name=${user_name}&matrix_type=${matrix_type}`,
+      `/api/user-profile/find?user_name=${user_name}&matrix_type=${matrix_type}`,
     );
   },
   // Matrices

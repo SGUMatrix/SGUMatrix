@@ -10,9 +10,9 @@ export const signUp = userInfo =>
 
 export const signIn = credentials =>
   baseInstance({
-    url: '/oauth/v2/token',
+    url: '/login',
     method: 'post',
-    data: createFormDataObj({ ...credentials, grant_type: 'password' }),
+    data: credentials,
   });
 
 export const inviter = params =>
