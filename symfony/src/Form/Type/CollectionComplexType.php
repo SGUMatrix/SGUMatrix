@@ -14,7 +14,7 @@ class CollectionComplexType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('fullName', TextType::class)
+            ->add('lastName', TextType::class)
             ->add('username', TextType::class)
             ->add('email', EmailType::class)
         ;

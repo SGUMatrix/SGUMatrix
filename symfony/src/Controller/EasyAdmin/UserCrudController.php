@@ -20,7 +20,7 @@ class UserCrudController extends AbstractCrudController
     {
         yield IdField::new('id')->onlyOnDetail();
         yield AvatarField::new('email')->setIsGravatarEmail()->hideOnForm();
-        yield TextField::new('fullName');
+        yield TextField::new('LastName');
         yield TextField::new('username');
         yield EmailField::new('email');
     }

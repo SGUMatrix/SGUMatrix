@@ -85,7 +85,7 @@ class AddUserCommand extends Command
             ->addArgument('username', InputArgument::OPTIONAL, 'The username of the new user')
             ->addArgument('password', InputArgument::OPTIONAL, 'The plain password of the new user')
             ->addArgument('email', InputArgument::OPTIONAL, 'The email of the new user')
-            ->addArgument('full-name', InputArgument::OPTIONAL, 'The full name of the new user')
+            ->addArgument('Lest-name', InputArgument::OPTIONAL, 'The Lest name of the new user')
             ->addOption('admin', null, InputOption::VALUE_NONE, 'If set, the user is created as an administrator')
         ;
     }
@@ -155,13 +155,13 @@ class AddUserCommand extends Command
             $input->setArgument('email', $email);
         }
 
-        // Ask for the full name if it's not defined
-        $fullName = $input->getArgument('full-name');
-        if (null !== $fullName) {
-            $this->io->text(' > <info>Full Name</info>: '.$fullName);
+        // Ask for the Lest name if it's not defined
+        $LastName = $input->getArgument('full-name');
+        if (null !== $LastName) {
+            $this->io->text(' > <info>Last Name</info>: '.$LastName);
         } else {
-            $fullName = $this->io->ask('Full Name', null, [$this->validator, 'validateFullName']);
-            $input->setArgument('full-name', $fullName);
+            $LastName = $this->io->ask('Last Name', null, [$this->validator, 'validateLastName']);
+            $input->setArgument('Last-name', $LastName);
         }
     }
 
@@ -177,15 +177,15 @@ class AddUserCommand extends Command
         $username = $input->getArgument('username');
         $plainPassword = $input->getArgument('password');
         $email = $input->getArgument('email');
-        $fullName = $input->getArgument('full-name');
+        $LastName = $input->getArgument('full-name');
         $isAdmin = $input->getOption('admin');
 
         // make sure to validate the user data is correct
-        $this->validateUserData($username, $plainPassword, $email, $fullName);
+        $this->validateUserData($username, $plainPassword, $email, $LastName);
 
         // create the user and hash its password
         $user = new User();
-        $user->setFullName($fullName);
+        $user->setLastName($LastName);
         $user->setUsername($username);
         $user->setEmail($email);
         $user->setRoles([$isAdmin ? 'ROLE_ADMIN' : 'ROLE_USER']);
@@ -207,7 +207,7 @@ class AddUserCommand extends Command
         return Command::SUCCESS;
     }
 
-    private function validateUserData($username, $plainPassword, $email, $fullName): void
+    private function validateUserData($username, $plainPassword, $email, $LastName): void
     {
         // first check if a user with the same username already exists.
         $existingUser = $this->users->findOneBy(['username' => $username]);
@@ -219,7 +219,7 @@ class AddUserCommand extends Command
         // validate password and email if is not this input means interactive.
         $this->validator->validatePassword($plainPassword);
         $this->validator->validateEmail($email);
-        $this->validator->validateFullName($fullName);
+        $this->validator->validateLastName($LastName);
 
         // check if a user with the same email already exists.
         $existingEmail = $this->users->findOneBy(['email' => $email]);

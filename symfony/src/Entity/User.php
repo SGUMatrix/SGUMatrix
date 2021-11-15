@@ -11,13 +11,13 @@
 
 namespace App\Entity;
 
+
+use App\Repository\UserProfileRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
-
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UserProfileRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="user_profile")
  *
  * Defines the properties of the User entity to represent the application users.
@@ -245,3 +245,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 }
+

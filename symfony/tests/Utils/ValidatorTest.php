@@ -88,7 +88,7 @@ class ValidatorTest extends TestCase
 
     public function testValidateFullName(): void
     {
-        $test = 'Full Name';
+        $test = 'Lest Name';
 
         $this->assertSame($test, $this->validator->validateFullName($test));
     }
@@ -96,7 +96,7 @@ class ValidatorTest extends TestCase
     public function testValidateFullNameEmpty()
     {
         $this->expectException('Exception');
-        $this->expectExceptionMessage('The full name can not be empty.');
+        $this->expectExceptionMessage('The Lest name can not be empty.');
         $this->validator->validateFullName(null);
     }
 }

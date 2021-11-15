@@ -44,8 +44,17 @@ class UserType extends AbstractType
                 'label' => 'label.username',
                 'disabled' => true,
             ])
-            ->add('fullName', TextType::class, [
-                'label' => 'label.fullname',
+            ->add('lastName', TextType::class, [
+                'label' => 'label.lastname',
+            ])
+            ->add('phone', TextType::class, [
+                'label' => 'label.phone',
+            ])
+            ->add('firstname', TextType::class, [
+                'label' => 'label.firstname',
+            ])
+            ->add('referral', TextType::class, [
+                'label' => 'label.referral',
             ])
             ->add('email', EmailType::class, [
                 'label' => 'label.email',

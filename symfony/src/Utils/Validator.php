@@ -61,12 +61,12 @@ class Validator
         return $email;
     }
 
-    public function validateFullName(?string $fullName): string
+    public function validateFullName(?string $LastName): string
     {
-        if (empty($fullName)) {
+        if (empty($LastName)) {
             throw new InvalidArgumentException('The full name can not be empty.');
         }
 
-        return $fullName;
+        return $LastName;
     }
 }
