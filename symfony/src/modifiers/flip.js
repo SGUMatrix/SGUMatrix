@@ -1,10 +1,10 @@
-import getOppositePlacement from '../utils/getOppositePlacement';
-import getOppositeVariation from '../utils/getOppositeVariation';
-import getPopperOffsets from '../utils/getPopperOffsets';
-import runModifiers from '../utils/runModifiers';
-import getBoundaries from '../utils/getBoundaries';
-import isModifierEnabled from '../utils/isModifierEnabled';
-import clockwise from '../utils/clockwise';
+import getOppositePlacement from '../Utils/getOppositePlacement';
+import getOppositeVariation from '../Utils/getOppositeVariation';
+import getPopperOffsets from '../Utils/getPopperOffsets';
+import runModifiers from '../Utils/runModifiers';
+import getBoundaries from '../Utils/getBoundaries';
+import isModifierEnabled from '../Utils/isModifierEnabled';
+import clockwise from '../Utils/clockwise';
 
 const BEHAVIORS = {
   FLIP: 'flip',

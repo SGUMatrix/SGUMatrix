@@ -1,5 +1,5 @@
-import isModifierEnabled from '../utils/isModifierEnabled';
-import getSupportedPropertyName from '../utils/getSupportedPropertyName';
+import isModifierEnabled from '../Utils/isModifierEnabled';
+import getSupportedPropertyName from '../Utils/getSupportedPropertyName';
 
 /**
  * Destroys the popper.

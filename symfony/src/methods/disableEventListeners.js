@@ -1,4 +1,4 @@
-import removeEventListeners from '../utils/removeEventListeners';
+import removeEventListeners from '../Utils/removeEventListeners';
 
 /**
  * It will remove resize/scroll events and won't recalculate popper position

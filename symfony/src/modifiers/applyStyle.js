@@ -1,7 +1,7 @@
-import setStyles from '../utils/setStyles';
-import setAttributes from '../utils/setAttributes';
-import getReferenceOffsets from '../utils/getReferenceOffsets';
-import computeAutoPlacement from '../utils/computeAutoPlacement';
+import setStyles from '../Utils/setStyles';
+import setAttributes from '../Utils/setAttributes';
+import getReferenceOffsets from '../Utils/getReferenceOffsets';
+import computeAutoPlacement from '../Utils/computeAutoPlacement';
 
 /**
  * @function

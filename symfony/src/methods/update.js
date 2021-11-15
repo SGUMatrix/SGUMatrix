@@ -1,7 +1,7 @@
-import computeAutoPlacement from '../utils/computeAutoPlacement';
-import getReferenceOffsets from '../utils/getReferenceOffsets';
-import getPopperOffsets from '../utils/getPopperOffsets';
-import runModifiers from '../utils/runModifiers';
+import computeAutoPlacement from '../Utils/computeAutoPlacement';
+import getReferenceOffsets from '../Utils/getReferenceOffsets';
+import getPopperOffsets from '../Utils/getPopperOffsets';
+import runModifiers from '../Utils/runModifiers';
 
 /**
  * Updates the position of the popper, computing the new offsets and applying

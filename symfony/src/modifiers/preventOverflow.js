@@ -1,6 +1,6 @@
-import getOffsetParent from '../utils/getOffsetParent';
-import getBoundaries from '../utils/getBoundaries';
-import getSupportedPropertyName from '../utils/getSupportedPropertyName';
+import getOffsetParent from '../Utils/getOffsetParent';
+import getBoundaries from '../Utils/getBoundaries';
+import getSupportedPropertyName from '../Utils/getSupportedPropertyName';
 
 /**
  * @function

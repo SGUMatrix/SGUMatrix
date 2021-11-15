@@ -1,5 +1,5 @@
-import getClientRect from '../utils/getClientRect';
-import getOppositePlacement from '../utils/getOppositePlacement';
+import getClientRect from '../Utils/getClientRect';
+import getOppositePlacement from '../Utils/getOppositePlacement';
 
 /**
  * @function

@@ -1,9 +1,9 @@
-import getSupportedPropertyName from '../utils/getSupportedPropertyName';
-import find from '../utils/find';
-import getOffsetParent from '../utils/getOffsetParent';
-import getBoundingClientRect from '../utils/getBoundingClientRect';
-import getRoundedOffsets from '../utils/getRoundedOffsets';
-import isBrowser from '../utils/isBrowser';
+import getSupportedPropertyName from '../Utils/getSupportedPropertyName';
+import find from '../Utils/find';
+import getOffsetParent from '../Utils/getOffsetParent';
+import getBoundingClientRect from '../Utils/getBoundingClientRect';
+import getRoundedOffsets from '../Utils/getRoundedOffsets';
+import isBrowser from '../Utils/isBrowser';
 
 const isFirefox = isBrowser && /Firefox/i.test(navigator.userAgent);
 

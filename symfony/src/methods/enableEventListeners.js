@@ -1,4 +1,4 @@
-import setupEventListeners from '../utils/setupEventListeners';
+import setupEventListeners from '../Utils/setupEventListeners';
 
 /**
  * It will add resize/scroll events and start recalculating

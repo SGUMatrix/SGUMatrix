@@ -9,7 +9,7 @@ import {
 import { isFn } from '../utils';
 import { ToastProps } from '../types';
 import { useKeeper } from './useKeeper';
-import { Direction } from '../utils/constant';
+import { Direction } from '../Utils/constant';
 
 interface Draggable {
   start: number;

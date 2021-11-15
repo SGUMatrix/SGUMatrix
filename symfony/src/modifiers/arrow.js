@@ -1,7 +1,7 @@
-import getClientRect from '../utils/getClientRect';
-import getOuterSizes from '../utils/getOuterSizes';
-import isModifierRequired from '../utils/isModifierRequired';
-import getStyleComputedProperty from '../utils/getStyleComputedProperty';
+import getClientRect from '../Utils/getClientRect';
+import getOuterSizes from '../Utils/getOuterSizes';
+import isModifierRequired from '../Utils/isModifierRequired';
+import getStyleComputedProperty from '../Utils/getStyleComputedProperty';
 
 /**
  * @function

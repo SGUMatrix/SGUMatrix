@@ -1,6 +1,6 @@
-import isNumeric from '../utils/isNumeric';
-import getClientRect from '../utils/getClientRect';
-import find from '../utils/find';
+import isNumeric from '../Utils/isNumeric';
+import getClientRect from '../Utils/getClientRect';
+import find from '../Utils/find';
 
 /**
  * Converts a string containing value + unit into a px value number

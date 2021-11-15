@@ -1,5 +1,5 @@
-import isModifierRequired from '../utils/isModifierRequired';
-import find from '../utils/find';
+import isModifierRequired from '../Utils/isModifierRequired';
+import find from '../Utils/find';
 
 /**
  * @function
