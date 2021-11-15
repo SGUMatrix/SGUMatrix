@@ -61,12 +61,24 @@ class Validator
         return $email;
     }
 
-    public function validateFullName(?string $LastName): string
+    public function validateLastName(?string $LastName): string
     {
         if (empty($LastName)) {
             throw new InvalidArgumentException('The full name can not be empty.');
         }
 
         return $LastName;
+    }
+    public function validatephone(?string $phone): string
+    {
+        if (empty($phone)) {
+            throw new InvalidArgumentException('The username can not be empty.');
+        }
+
+        if (1 !== preg_match('/^[a-z_]+$/', $phone)) {
+            throw new InvalidArgumentException('The username must contain only lowercase latin characters and underscores.');
+        }
+
+        return $phone;
     }
 }

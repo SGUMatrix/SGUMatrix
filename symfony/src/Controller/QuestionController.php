@@ -23,7 +23,7 @@ class QuestionController extends AbstractController
     public function signUp(): Response
     {
 
-        return $this->render('base.html.twig');
+        return $this->render('sign-up/Sign_up.html.twig');
 
     }
     /**

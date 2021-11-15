@@ -14,10 +14,10 @@ class FormFieldReference
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    public $id = 3;
+    public int $id = 3;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\ManyToOne(targetEntity="App\Entity\UserProfile")
      * @ORM\JoinColumn(nullable=false)
      */
     public $author;
@@ -30,7 +30,7 @@ tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 TEXT;
 
-    public $textEditor = <<<HTML
+    public string $textEditor = <<<HTML
 Lorem ipsum <b>dolor sit amet</b>, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt <i>ut labore et dolore</i> magna aliqua. Ut enim ad minim veniam,
 quis nostrud exercitation <a href="#">ullamco laboris nisi</a> ut aliquip ex ea commodo
@@ -38,7 +38,7 @@ consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 cillum dolore eu fugiat nulla pariatur.
 HTML;
 
-    public $codeEditor = <<<'PHP'
+    public string $codeEditor = <<<'PHP'
 <?php
 
 namespace Symfony\Component\HttpFoundation;
@@ -70,22 +70,25 @@ PHP;
     public $datetime;
     public $timezone = 'Europe/Madrid';
 
-    public $country = 'CR';
-    public $currency = 'JPY';
-    public $language = 'ar';
-    public $locale = 'zh_Hans_MO';
+    public string $country = 'CR';
+    public string $currency = 'JPY';
+    public string $language = 'ar';
+    public string $locale = 'zh_Hans_MO';
 
-    public $array = ['Item 1', 'Item 2'];
+    public array $array = ['Item 1', 'Item 2'];
     public $collectionSimple;
     public $collectionComplex;
 
-    public $image = 'placeholder-image.png';
+    public string $image = 'placeholder-image.png';
 
-    public $color = '#6174d1';
-    public $email = 'user@example.com';
-    public $telephone = '+1 800 555 0199';
-    public $url = 'https://github.com/EasyCorp/EasyAdminBundle';
+    public string $color = '#6174d1';
+    public string $email = 'user@example.com';
+    public string $telephone = '+1 800 555 0199';
+    public string $url = 'https://github.com/EasyCorp/EasyAdminBundle';
 
+    /**
+     * @throws \Exception
+     */
     public function __construct()
     {
         $this->date = new \DateTimeImmutable(sprintf('now + %d days', random_int(3, 30)));

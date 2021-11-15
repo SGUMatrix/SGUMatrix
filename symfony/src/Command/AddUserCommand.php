@@ -11,8 +11,8 @@
 
 namespace App\Command;
 
-use App\Entity\User;
-use App\Repository\UserRepository;
+use App\Entity\UserProfile;
+use App\Repository\UserProfileRepository;
 use App\Utils\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
@@ -55,14 +55,14 @@ class AddUserCommand extends Command
     /**
      * @var SymfonyStyle
      */
-    private $io;
+    private SymfonyStyle $io;
 
-    private $entityManager;
-    private $passwordHasher;
-    private $validator;
-    private $users;
+    private EntityManagerInterface $entityManager;
+    private UserPasswordHasherInterface $passwordHasher;
+    private Validator $validator;
+    private UserProfileRepository $users;
 
-    public function __construct(EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher, Validator $validator, UserRepository $users)
+    public function __construct(EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher, Validator $validator, UserProfileRepository $users)
     {
         parent::__construct();
 
@@ -86,7 +86,12 @@ class AddUserCommand extends Command
             ->addArgument('password', InputArgument::OPTIONAL, 'The plain password of the new user')
             ->addArgument('email', InputArgument::OPTIONAL, 'The email of the new user')
             ->addArgument('Lest-name', InputArgument::OPTIONAL, 'The Lest name of the new user')
+            ->addArgument('first-name', InputArgument::OPTIONAL, 'The Lest name of the new user')
+            ->addArgument('phone', InputArgument::OPTIONAL, 'The Lest name of the new user')
+            ->addArgument('referral', InputArgument::OPTIONAL, 'The Lest name of the new user')
             ->addOption('admin', null, InputOption::VALUE_NONE, 'If set, the user is created as an administrator')
+
+
         ;
     }
 
@@ -114,7 +119,7 @@ class AddUserCommand extends Command
      */
     protected function interact(InputInterface $input, OutputInterface $output): void
     {
-        if (null !== $input->getArgument('username') && null !== $input->getArgument('password') && null !== $input->getArgument('email') && null !== $input->getArgument('full-name')) {
+        if (null !== $input->getArgument('username') && null !== $input->getArgument('password') && null !== $input->getArgument('email') && null !== $input->getArgument('last-name') && null !== $input->getArgument('phone')) {
             return;
         }
 
@@ -163,6 +168,13 @@ class AddUserCommand extends Command
             $LastName = $this->io->ask('Last Name', null, [$this->validator, 'validateLastName']);
             $input->setArgument('Last-name', $LastName);
         }
+        $phone = $input->getArgument('phone');
+        if (null !== $LastName) {
+            $this->io->text(' > <info>phone</info>: '.$phone);
+        } else {
+            $phone = $this->io->ask('phone', null, [$this->validator, 'validatephone']);
+            $input->setArgument('phone', $phone);
+        }
     }
 
     /**
@@ -177,17 +189,19 @@ class AddUserCommand extends Command
         $username = $input->getArgument('username');
         $plainPassword = $input->getArgument('password');
         $email = $input->getArgument('email');
-        $LastName = $input->getArgument('full-name');
+        $LastName = $input->getArgument('last-name');
+        $phone = $input->getArgument('phone');
         $isAdmin = $input->getOption('admin');
 
         // make sure to validate the user data is correct
-        $this->validateUserData($username, $plainPassword, $email, $LastName);
+        $this->validateUserData($username, $plainPassword, $email, $LastName, $phone);
 
         // create the user and hash its password
-        $user = new User();
+        $user = new UserProfile();
         $user->setLastName($LastName);
         $user->setUsername($username);
         $user->setEmail($email);
+        $user->setPhone($phone);
         $user->setRoles([$isAdmin ? 'ROLE_ADMIN' : 'ROLE_USER']);
 
         // See https://symfony.com/doc/current/security.html#c-encoding-passwords
@@ -207,7 +221,7 @@ class AddUserCommand extends Command
         return Command::SUCCESS;
     }
 
-    private function validateUserData($username, $plainPassword, $email, $LastName): void
+    private function validateUserData($username, $plainPassword, $email, $LastName, $phone): void
     {
         // first check if a user with the same username already exists.
         $existingUser = $this->users->findOneBy(['username' => $username]);
@@ -220,6 +234,7 @@ class AddUserCommand extends Command
         $this->validator->validatePassword($plainPassword);
         $this->validator->validateEmail($email);
         $this->validator->validateLastName($LastName);
+        $this->validator->validatephone($phone);
 
         // check if a user with the same email already exists.
         $existingEmail = $this->users->findOneBy(['email' => $email]);
