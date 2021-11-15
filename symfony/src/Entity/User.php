@@ -10,12 +10,13 @@
  */
 
 namespace App\Entity;
-
-
-use App\Repository\UserProfileRepository;
+use App\Entity\UserProfile;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="user_profile")
@@ -32,6 +33,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
+     * @var int
+     *
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -39,174 +42,77 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private int $id;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     */
+    private string $LastName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=2, max=50)
      */
     private string $username;
 
     /**
-     * @ORM\Column(type="json")
+     * @var string
+     *
+     * @ORM\Column(type="string", unique=true)
+     * @Assert\Email()
      */
-    private array $roles = [];
+    private string $email;
 
     /**
-     * @var string The hashed password
+     * @var string
+     *
      * @ORM\Column(type="string")
      */
     private string $password;
 
     /**
-     * @ORM\OneToOne(targetEntity=UserProfile::class, cascade={"persist", "remove"})
+     * @var array
+     *
+     * @ORM\Column(type="json")
      */
-    private ?UserProfile $referral;
+    private array $roles = [];
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private string $firstName;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private string $lastName;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private string $email;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private ?string $phone;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private bool $isVerified = true;
+    public function __toString()
+    {
+        return (string) $this->getLastName();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @deprecated since Symfony 5.3, use getUserIdentifier instead
-     */
-    public function getUsername(): string
+    public function setLastName(string $LastName): void
     {
-        return (string) $this->username;
-    }
-
-    public function setUsername(string $username): self
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
-    public function getUserIdentifier(): string
-    {
-        return (string) $this->username;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Returning a salt is only needed, if you are not using a modern
-     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
-     *
-     * @see UserInterface
-     */
-    public function getSalt(): ?string
-    {
-        return null;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials()
-    {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
-    }
-
-    public function __toString(): string
-    {
-        return $this->username;
-    }
-
-    public function getReferral(): ?self
-    {
-        return $this->referral;
-    }
-
-    public function setReferral(?self $referral): self
-    {
-        $this->referral = $referral;
-
-        return $this;
-    }
-
-    public function getFirstName(): ?string
-    {
-        return $this->firstName;
-    }
-
-    public function setFirstName(string $firstName): self
-    {
-        $this->firstName = $firstName;
-
-        return $this;
+        $this->LastName = $LastName;
     }
 
     public function getLastName(): ?string
     {
-        return $this->lastName;
+        return $this->LastName;
     }
 
-    public function setLastName(string $lastName): self
+    public function getUserIdentifier(): string
     {
-        $this->lastName = $lastName;
+        return $this->username;
+    }
 
-        return $this;
+    #[Pure] public function getUsername(): string
+    {
+        return $this->getUserIdentifier();
+    }
+
+    public function setUsername(string $username): void
+    {
+        $this->username = $username;
     }
 
     public function getEmail(): ?string
@@ -214,35 +120,75 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(string $email): void
     {
         $this->email = $email;
-
-        return $this;
     }
 
-    public function getPhone(): ?string
+    public function getPassword(): ?string
     {
-        return $this->phone;
+        return $this->password;
     }
 
-    public function setPhone(?string $phone): self
+    public function setPassword(string $password): void
     {
-        $this->phone = $phone;
-
-        return $this;
+        $this->password = $password;
     }
 
-    public function isVerified(): bool
+    /**
+     * Returns the roles or permissions granted to the user for security.
+     */
+    public function getRoles(): array
     {
-        return $this->isVerified;
+        $roles = $this->roles;
+
+        // guarantees that a user always has at least one role for security
+        if (empty($roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+
+        return array_unique($roles);
     }
 
-    public function setIsVerified(bool $isVerified): self
+    public function setRoles(array $roles): void
     {
-        $this->isVerified = $isVerified;
+        $this->roles = $roles;
+    }
 
-        return $this;
+    /**
+     * Returns the salt that was originally used to encode the password.
+     *
+     * {@inheritdoc}
+     */
+    public function getSalt(): ?string
+    {
+        // We're using bcrypt in security.yaml to encode the password, so
+        // the salt value is built-in and and you don't have to generate one
+        // See https://en.wikipedia.org/wiki/Bcrypt
+
+        return null;
+    }
+
+    /**
+     * Removes sensitive data from the user.
+     *
+     * {@inheritdoc}
+     */
+    public function eraseCredentials(): void
+    {
+        // if you had a plainPassword property, you'd nullify it here
+        // $this->plainPassword = null;
+    }
+
+    public function __serialize(): array
+    {
+        // add $this->salt too if you don't use Bcrypt or Argon2i
+        return [$this->id, $this->username, $this->password];
+    }
+
+    public function __unserialize(array $data): void
+    {
+        // add $this->salt too if you don't use Bcrypt or Argon2i
+        [$this->id, $this->username, $this->password] = $data;
     }
 }
-

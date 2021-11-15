@@ -14,6 +14,7 @@ namespace App\Pagination;
 use Doctrine\ORM\QueryBuilder as DoctrineQueryBuilder;
 use Doctrine\ORM\Tools\Pagination\CountWalker;
 use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
+use JetBrains\PhpStorm\Pure;
 
 /**
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
@@ -28,11 +29,11 @@ class Paginator
      */
     public const PAGE_SIZE = 10;
 
-    private $queryBuilder;
-    private $currentPage;
-    private $pageSize;
-    private $results;
-    private $numResults;
+    private DoctrineQueryBuilder $queryBuilder;
+    private int $currentPage;
+    private int $pageSize;
+    private \Traversable $results;
+    private int $numResults;
 
     public function __construct(DoctrineQueryBuilder $queryBuilder, int $pageSize = self::PAGE_SIZE)
     {
@@ -40,6 +41,9 @@ class Paginator
         $this->pageSize = $pageSize;
     }
 
+    /**
+     * @throws \Exception
+     */
     public function paginate(int $page = 1): self
     {
         $this->currentPage = max(1, $page);
@@ -90,12 +94,12 @@ class Paginator
         return max(1, $this->currentPage - 1);
     }
 
-    public function hasNextPage(): bool
+    #[Pure] public function hasNextPage(): bool
     {
         return $this->currentPage < $this->getLastPage();
     }
 
-    public function getNextPage(): int
+    #[Pure] public function getNextPage(): int
     {
         return min($this->getLastPage(), $this->currentPage + 1);
     }

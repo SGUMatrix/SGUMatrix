@@ -11,6 +11,7 @@
 
 namespace App\EventSubscriber;
 
+use JetBrains\PhpStorm\ArrayShape;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
@@ -28,9 +29,9 @@ use function Symfony\Component\String\u;
  */
 class RedirectToPreferredLocaleSubscriber implements EventSubscriberInterface
 {
-    private $urlGenerator;
-    private $locales;
-    private $defaultLocale;
+    private UrlGeneratorInterface $urlGenerator;
+    private array $locales;
+    private mixed $defaultLocale;
 
     public function __construct(UrlGeneratorInterface $urlGenerator, string $locales, string $defaultLocale = null)
     {
@@ -54,6 +55,7 @@ class RedirectToPreferredLocaleSubscriber implements EventSubscriberInterface
         $this->locales = array_unique($this->locales);
     }
 
+    #[ArrayShape([KernelEvents::REQUEST => "string"])]
     public static function getSubscribedEvents(): array
     {
         return [

@@ -14,7 +14,7 @@ namespace App\DataFixtures;
 use App\Entity\Comment;
 use App\Entity\Post;
 use App\Entity\Tag;
-use App\Entity\User;
+use App\Entity\UserProfile;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -23,8 +23,8 @@ use function Symfony\Component\String\u;
 
 class AppFixtures extends Fixture
 {
-    private $passwordHasher;
-    private $slugger;
+    private UserPasswordHasherInterface $passwordHasher;
+    private SluggerInterface $slugger;
 
     public function __construct(UserPasswordHasherInterface $passwordHasher, SluggerInterface $slugger)
     {
@@ -41,10 +41,11 @@ class AppFixtures extends Fixture
 
     private function loadUsers(ObjectManager $manager): void
     {
-        foreach ($this->getUserData() as [$LastName, $username, $password, $email, $roles]) {
-            $user = new User();
-            $user->setFullName($LastName);
+        foreach ($this->getUserData() as [$LastName, $username, $password, $email,$phone, $roles]) {
+            $user = new UserProfile();
+            $user->setLastName($LastName);
             $user->setUsername($username);
+            $user->setPhone($phone);
             $user->setPassword($this->passwordHasher->hashPassword($user, $password));
             $user->setEmail($email);
             $user->setRoles($roles);
@@ -83,7 +84,6 @@ class AppFixtures extends Fixture
 
             foreach (range(1, 5) as $i) {
                 $comment = new Comment();
-                $comment->setAuthor($this->getReference('john_user'));
                 $comment->setContent($this->getRandomText(random_int(255, 512)));
                 $comment->setPublishedAt(new \DateTime('now + '.$i.'seconds'));
 
@@ -99,7 +99,7 @@ class AppFixtures extends Fixture
     private function getUserData(): array
     {
         return [
-            // $userData = [$LastName, $username, $password, $email, $roles];
+            // $userData = [$LastName, $username, $password, $email, $phone $roles];
             ['Jane Doe', 'jane_admin', 'kitten', 'jane_admin@symfony.com', ['ROLE_ADMIN']],
             ['Tom Doe', 'tom_admin', 'kitten', 'tom_admin@symfony.com', ['ROLE_ADMIN']],
             ['John Doe', 'john_user', 'kitten', 'john_user@symfony.com', ['ROLE_USER']],

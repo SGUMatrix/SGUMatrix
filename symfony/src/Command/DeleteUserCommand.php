@@ -11,7 +11,7 @@
 
 namespace App\Command;
 
-use App\Entity\User;
+use App\Entity\UserProfile;
 use App\Repository\UserRepository;
 use App\Utils\Validator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -110,7 +110,7 @@ HELP
     {
         $username = $this->validator->validateUsername($input->getArgument('username'));
 
-        /** @var User $user */
+        /** @var UserProfile $user */
         $user = $this->users->findOneByUsername($username);
 
         if (null === $user) {

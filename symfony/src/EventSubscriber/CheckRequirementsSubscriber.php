@@ -13,6 +13,7 @@ namespace App\EventSubscriber;
 
 use Doctrine\DBAL\Exception\DriverException;
 use Doctrine\ORM\EntityManagerInterface;
+use JetBrains\PhpStorm\ArrayShape;
 use Symfony\Component\Console\ConsoleEvents;
 use Symfony\Component\Console\Event\ConsoleErrorEvent;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -30,7 +31,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 class CheckRequirementsSubscriber implements EventSubscriberInterface
 {
-    private $entityManager;
+    private EntityManagerInterface $entityManager;
 
     public function __construct(EntityManagerInterface $entityManager)
     {
@@ -41,6 +42,7 @@ class CheckRequirementsSubscriber implements EventSubscriberInterface
     // listen to. You can listen to several events, execute more than one method
     // for each event and set the priority of each event too.
     // See https://symfony.com/doc/current/event_dispatcher.html#creating-an-event-subscriber
+    #[ArrayShape([ConsoleEvents::ERROR => "string", KernelEvents::EXCEPTION => "string"])]
     public static function getSubscribedEvents(): array
     {
         return [

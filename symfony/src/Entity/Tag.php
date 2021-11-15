@@ -39,7 +39,7 @@ class Tag implements \JsonSerializable
      *
      * @ORM\Column(type="string", unique=true)
      */
-    private $name;
+    private string $name;
 
     public function getId(): ?int
     {

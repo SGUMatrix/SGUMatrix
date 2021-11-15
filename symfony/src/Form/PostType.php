@@ -31,7 +31,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
  */
 class PostType extends AbstractType
 {
-    private $slugger;
+    private SluggerInterface $slugger;
 
     // Form types are services, so you can inject other services in them if needed
     public function __construct(SluggerInterface $slugger)

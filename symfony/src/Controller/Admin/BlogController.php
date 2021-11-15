@@ -72,7 +72,7 @@ class BlogController extends AbstractController
     public function new(Request $request): Response
     {
         $post = new Post();
-        $post->setAuthor($this->getUser());
+        $post->setAuthor($this->get());
 
         // See https://symfony.com/doc/current/form/multiple_buttons.html
         $form = $this->createForm(PostType::class, $post)

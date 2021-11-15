@@ -12,6 +12,7 @@
 namespace App\EventSubscriber;
 
 use App\Event\CommentCreatedEvent;
+use JetBrains\PhpStorm\ArrayShape;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
@@ -25,10 +26,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class CommentNotificationSubscriber implements EventSubscriberInterface
 {
-    private $mailer;
-    private $translator;
-    private $urlGenerator;
-    private $sender;
+    private MailerInterface $mailer;
+    private TranslatorInterface $translator;
+    private UrlGeneratorInterface $urlGenerator;
+    private string $sender;
 
     public function __construct(MailerInterface $mailer, UrlGeneratorInterface $urlGenerator, TranslatorInterface $translator, string $sender)
     {
@@ -38,6 +39,7 @@ class CommentNotificationSubscriber implements EventSubscriberInterface
         $this->sender = $sender;
     }
 
+    #[ArrayShape([CommentCreatedEvent::class => "string"])]
     public static function getSubscribedEvents(): array
     {
         return [

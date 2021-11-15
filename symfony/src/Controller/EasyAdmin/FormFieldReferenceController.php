@@ -4,7 +4,7 @@ namespace App\Controller\EasyAdmin;
 
 use App\Entity\FormFieldReference;
 use App\Entity\Post;
-use App\Entity\User;
+use App\Entity\UserProfile;
 use App\Form\Type\CollectionComplexType;
 use App\Form\Type\CollectionSimpleType;
 use App\Form\Type\TagsInputType;
@@ -113,8 +113,8 @@ class FormFieldReferenceController extends AbstractCrudController
 
     public function createEntity(string $entityFqcn)
     {
-        $janeDoe = $this->getDoctrine()->getRepository(User::class)->findOneBy(['username' => 'jane_admin']);
-        $johnDoe = $this->getDoctrine()->getRepository(User::class)->findOneBy(['username' => 'john_user']);
+        $janeDoe = $this->getDoctrine()->getRepository(UserProfile::class)->findOneBy(['username' => 'jane_admin']);
+        $johnDoe = $this->getDoctrine()->getRepository(UserProfile::class)->findOneBy(['username' => 'john_user']);
         $formFieldReference = parent::createEntity($entityFqcn);
 
         $formFieldReference->author = $janeDoe;

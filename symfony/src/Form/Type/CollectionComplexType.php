@@ -2,7 +2,7 @@
 
 namespace App\Form\Type;
 
-use App\Entity\User;
+use App\Entity\UserProfile;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -23,7 +23,7 @@ class CollectionComplexType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => UserProfile::class,
         ]);
     }
 }

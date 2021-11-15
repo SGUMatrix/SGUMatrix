@@ -14,6 +14,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -50,14 +51,14 @@ class Post
      * @ORM\Column(type="string")
      * @Assert\NotBlank
      */
-    private $title;
+    private string $title;
 
     /**
      * @var string
      *
      * @ORM\Column(type="string")
      */
-    private $slug;
+    private string $slug;
 
     /**
      * @var string
@@ -66,7 +67,7 @@ class Post
      * @Assert\NotBlank(message="post.blank_summary")
      * @Assert\Length(max=255)
      */
-    private $summary;
+    private string $summary;
 
     /**
      * @var string
@@ -75,22 +76,22 @@ class Post
      * @Assert\NotBlank(message="post.blank_content")
      * @Assert\Length(min=10, minMessage="post.too_short_content")
      */
-    private $content;
+    private string $content;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(type="datetime")
      */
-    private $publishedAt;
+    private \DateTime $publishedAt;
 
     /**
-     * @var User
+     * @var UserProfile
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\ManyToOne(targetEntity="App\Entity\UserProfile")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $author;
+    private UserProfile $author;
 
     /**
      * @var Comment[]|Collection
@@ -103,7 +104,7 @@ class Post
      * )
      * @ORM\OrderBy({"publishedAt": "DESC"})
      */
-    private $comments;
+    private array|Collection|ArrayCollection $comments;
 
     /**
      * @var Tag[]|Collection
@@ -113,9 +114,9 @@ class Post
      * @ORM\OrderBy({"name": "ASC"})
      * @Assert\Count(max="4", maxMessage="post.too_many_tags")
      */
-    private $tags;
+    private array|Collection|ArrayCollection $tags;
 
-    public function __toString()
+    #[Pure] public function __toString()
     {
         return (string) $this->getTitle();
     }
@@ -172,12 +173,12 @@ class Post
         $this->publishedAt = $publishedAt;
     }
 
-    public function getAuthor(): ?User
+    public function getAuthor(): ?UserProfile
     {
         return $this->author;
     }
 
-    public function setAuthor(User $author): void
+    public function setAuthor(UserProfile $author): void
     {
         $this->author = $author;
     }

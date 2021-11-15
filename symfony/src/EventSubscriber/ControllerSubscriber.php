@@ -12,6 +12,7 @@
 namespace App\EventSubscriber;
 
 use App\Twig\SourceCodeExtension;
+use JetBrains\PhpStorm\ArrayShape;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -25,13 +26,14 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 class ControllerSubscriber implements EventSubscriberInterface
 {
-    private $twigExtension;
+    private SourceCodeExtension $twigExtension;
 
     public function __construct(SourceCodeExtension $twigExtension)
     {
         $this->twigExtension = $twigExtension;
     }
 
+    #[ArrayShape([KernelEvents::CONTROLLER => "string"])]
     public static function getSubscribedEvents(): array
     {
         return [
