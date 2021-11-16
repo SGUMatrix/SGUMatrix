@@ -1,0 +1,40 @@
+{
+activationDate: "2021-06-24 09:11:13"
+activePartners: 7
+avatar: "/getFile/avatar/6180f21a2464b.jpg"
+balance: 15.1
+can_create_comment: false
+can_use_school: true
+clones: 0
+comets: 0
+description: null
+email: "n.19@bk.ru"
+firstEnter: false
+firstLine: 7
+firstName: "Наталия"
+hasFinPassword: true
+id: 35444
+income: 37075
+instagram: ""
+inviter: "Igor88888"
+inviterAvatar: "/getFile/avatar/60fbf59320494.jpg"
+inviterFio: "Игорь Винокуров"
+isAdmin: false
+lastName: "Севрюгина"
+locale: "en"
+middleName: ""
+myDescription: null
+myInstagram: null
+myTg: null
+myVk: null
+partners: 7
+phone: "79201486568"
+refLink: "/sign-up?ref=Natsliy"
+registrationDate: "2021-05-20 22:45:11"
+showInviter: false
+tg: ""
+tgKey: "3155bafd856c8db07b9a440540a13855"
+transferBalance: 0
+userOnLink: 0
+vk: ""
+  },
