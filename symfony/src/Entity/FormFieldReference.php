@@ -17,7 +17,7 @@ class FormFieldReference
     public $id = 3;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\ManyToOne(targetEntity="App\Entity\UserProfile")
      * @ORM\JoinColumn(nullable=false)
      */
     public $author;

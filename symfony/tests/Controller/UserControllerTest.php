@@ -11,6 +11,7 @@
 
 namespace App\Tests\Controller;
 
+use App\Entity\UserProfile;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
@@ -68,7 +69,7 @@ class UserControllerTest extends WebTestCase
 
         $this->assertResponseRedirects('/en/profile/edit', Response::HTTP_FOUND);
 
-        /** @var \App\Entity\User $user */
+        /** @var UserProfile $user */
         $user = self::$container->get(UserRepository::class)->findOneByEmail($newUserEmail);
 
         $this->assertNotNull($user);

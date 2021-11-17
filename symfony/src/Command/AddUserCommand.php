@@ -11,8 +11,8 @@
 
 namespace App\Command;
 
-use App\Entity\User;
-use App\Repository\UserRepository;
+use App\Entity\UserProfile;
+use App\Repository\UserProfileRepository;
 use App\Utils\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
@@ -62,7 +62,7 @@ class AddUserCommand extends Command
     private $validator;
     private $users;
 
-    public function __construct(EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher, Validator $validator, UserRepository $users)
+    public function __construct(EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher, Validator $validator, UserProfileRepository $users)
     {
         parent::__construct();
 
@@ -184,7 +184,7 @@ class AddUserCommand extends Command
         $this->validateUserData($username, $plainPassword, $email, $LastName);
 
         // create the user and hash its password
-        $user = new User();
+        $user = new UserProfile();
         $user->setLastName($LastName);
         $user->setUsername($username);
         $user->setEmail($email);

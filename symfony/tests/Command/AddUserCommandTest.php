@@ -12,6 +12,7 @@
 namespace App\Tests\Command;
 
 use App\Command\AddUserCommand;
+use App\Entity\UserProfile;
 use App\Repository\UserRepository;
 
 class AddUserCommandTest extends AbstractCommandTest
@@ -77,7 +78,7 @@ class AddUserCommandTest extends AbstractCommandTest
      */
     private function assertUserCreated(bool $isAdmin): void
     {
-        /** @var \App\Entity\User $user */
+        /** @var UserProfile $user */
         $user = $this->getContainer()->get(UserRepository::class)->findOneByEmail($this->userData['email']);
         $this->assertNotNull($user);
 

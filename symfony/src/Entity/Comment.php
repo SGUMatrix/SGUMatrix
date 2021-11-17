@@ -69,9 +69,9 @@ class Comment
     private $publishedAt;
 
     /**
-     * @var User
+     * @var UserProfile
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\ManyToOne(targetEntity="App\Entity\UserProfile")
      * @ORM\JoinColumn(nullable=false)
      */
     private $author;
@@ -116,12 +116,12 @@ class Comment
         $this->publishedAt = $publishedAt;
     }
 
-    public function getAuthor(): ?User
+    public function getAuthor(): ?UserProfile
     {
         return $this->author;
     }
 
-    public function setAuthor(User $author): void
+    public function setAuthor(UserProfile $author): void
     {
         $this->author = $author;
     }

@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserProfileController extends AbstractController
 {
-    #[Route('/api/user-profile', name: 'api_user', methods: ['GET','POST'])]
+    #[Route('/api/user_profile', name: 'api_user', methods: ['GET','POST'])]
     public function index(): JsonResponse
     {
         /** @var UserProfile $user */
@@ -33,9 +33,9 @@ class UserProfileController extends AbstractController
             'id' => $user->getId(),
             'income' => 37075,
             'instagram' => "",
-            'inviter' => $user->getReferral() ? $user->getReferral()->getUsername() : null,
+            'inviter' => $user->getReferral() ? $user->getUsername() : null,
             'inviterAvatar' => "/getFile/avatar/60fbf59320494.jpg",
-            'inviterFio' => $user->getReferral() ? $user->getReferral()->getFullName() : null,
+            'inviterFio' => $user->getReferral() ? $user->getFullName() : null,
             'isAdmin' => in_array(UserProfile::ROLE_ADMIN, $user->getRoles()),
             'lastName' => $user->getLastName(),
             'locale' => "ru",
@@ -46,7 +46,7 @@ class UserProfileController extends AbstractController
             'myVk' => null,
             'partners' => 7,
             'phone' => $user->getPhone(),
-            'refLink' => $user->getReferral() ? "/sign-up?ref=".$user->getReferral()->getUsername() : null,
+            'refLink' => $user->getReferral() ? "/Sign_up?ref=".$user->getUsername() : null,
             'registrationDate' => "2021-05-20 22:45:11",
             'showInviter' => false,
             'tg' => "",

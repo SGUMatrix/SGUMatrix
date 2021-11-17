@@ -25,7 +25,7 @@ class RegistrationController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
 
-        if (!$data['password'] || !$data['username']  || !$data['first_name']  || !$data['last_name']  || !$data['email']  || !$data['phone'] || !$data['referral']) {
+        if (!$data['password'] || !$data['username']  || !$data['first_name']  || !$data['last_name']  || !$data['email']  || !$data['phone']|| !$data['referral']) {
             return new JsonResponse(['success' => false, 'message' => 'Заполните все поля']);
         }
 
@@ -41,6 +41,7 @@ class RegistrationController extends AbstractController
         $user->setEmail($data['email']);
         $user->setFirstName($data['first_name']);
         $user->setLastName($data['last_name']);
+        $user->setReferral($data['referral']);
 
         $username = $this->userProfileRepository->findOneByUsername($data['username']);
         if ($username) {
@@ -59,7 +60,7 @@ class RegistrationController extends AbstractController
         $referral = $this->userProfileRepository->findOneByUsername($data['referral']);
         if ($referral) {
             $user->setReferral($referral);
-        } else {
+        }else {
             return new JsonResponse(['success' => false, 'message' => 'Наставник с таким логином не существует']);
         }
 

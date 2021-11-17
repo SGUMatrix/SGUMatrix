@@ -6,7 +6,7 @@ use App\Entity\Comment;
 use App\Entity\FormFieldReference;
 use App\Entity\Post;
 use App\Entity\Tag;
-use App\Entity\User;
+use App\Entity\UserProfile;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -51,7 +51,7 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Users', 'fa fa-users', User::class);
+        yield MenuItem::linkToCrud('Users', 'fa fa-users', UserProfile::class);
         yield MenuItem::linkToCrud('Blog Posts', 'fa fa-file-text-o', Post::class);
         yield MenuItem::linkToCrud('Comments', 'far fa-comments', Comment::class);
         yield MenuItem::linkToCrud('Tags', 'fas fa-tags', Tag::class);

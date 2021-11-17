@@ -11,8 +11,8 @@
 
 namespace App\Command;
 
-use App\Entity\User;
-use App\Repository\UserRepository;
+use App\Entity\UserProfile;
+use App\Repository\UserProfileRepository;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -46,7 +46,7 @@ class ListUsersCommand extends Command
     private $emailSender;
     private $users;
 
-    public function __construct(MailerInterface $mailer, string $emailSender, UserRepository $users)
+    public function __construct(MailerInterface $mailer, string $emailSender, UserProfileRepository $users)
     {
         parent::__construct();
 
@@ -97,12 +97,14 @@ HELP
         $allUsers = $this->users->findBy([], ['id' => 'DESC'], $maxResults);
 
         // Doctrine query returns an array of objects and we need an array of plain arrays
-        $usersAsPlainArrays = array_map(static function (User $user) {
+        $usersAsPlainArrays = array_map(static function (UserProfile $user) {
             return [
                 $user->getId(),
                 $user->getLastName(),
                 $user->getusername(),
                 $user->getEmail(),
+                $user->getReferral(),
+                $user->getPhone(),
                 implode(', ', $user->getRoles()),
             ];
         }, $allUsers);
@@ -115,7 +117,7 @@ HELP
         $bufferedOutput = new BufferedOutput();
         $io = new SymfonyStyle($input, $bufferedOutput);
         $io->table(
-            ['ID', 'Last Name', 'Username', 'Email', 'Roles'],
+            ['ID', 'Last Name', 'Username', 'Email', 'Roles', 'referral', 'phone'],
             $usersAsPlainArrays
         );
 
