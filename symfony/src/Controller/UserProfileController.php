@@ -46,7 +46,7 @@ class UserProfileController extends AbstractController
             'myVk' => null,
             'partners' => 7,
             'phone' => $user->getPhone(),
-            'refLink' => $user->getReferral() ? "/sign-up?ref=".$user->getReferral()->getUsername() : null,
+            'refLink' => "/sign-up?ref=".$user->getUsername(),
             'registrationDate' => "2021-05-20 22:45:11",
             'showInviter' => false,
             'tg' => "",

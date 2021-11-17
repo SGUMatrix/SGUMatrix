@@ -6,6 +6,7 @@ use App\Entity\UserProfile;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -17,7 +18,7 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
  * @method UserProfile[]    findAll()
  * @method UserProfile[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UserProfileRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
+class UserProfileRepository extends ServiceEntityRepository implements PasswordUpgraderInterface, UserLoaderInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -59,6 +60,15 @@ class UserProfileRepository extends ServiceEntityRepository implements PasswordU
         }
 
         return $user;
+    }
+
+    /**
+     * @param string $username
+     * @return UserProfile|null
+     */
+    public function loadUserByUsername(string $username): ?UserProfile
+    {
+        return $this->findOneByUsername($username);
     }
 
     // /**
