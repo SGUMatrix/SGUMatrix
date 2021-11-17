@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserProfileController extends AbstractController
 {
-    #[Route('/api/user-profile', name: 'api_user', methods: ['GET','POST'])]
+    #[Route('/api/user_profile', name: 'api_user', methods: ['GET','POST'])]
     public function index(): JsonResponse
     {
         /** @var UserProfile $user */
@@ -19,7 +19,7 @@ class UserProfileController extends AbstractController
             'activationDate' => "2021-06-24 09:11:13",
             'activePartners' => 7,
             'avatar' => "/getFile/avatar/6180f21a2464b.jpg",
-            'balance' => 15.1,
+            'balance' => 5000,
             'can_create_comment' => false,
             'can_use_school' => true,
             'clones' => 0,
@@ -33,9 +33,9 @@ class UserProfileController extends AbstractController
             'id' => $user->getId(),
             'income' => 37075,
             'instagram' => "",
-            'inviter' => $user->getReferral() ? $user->getReferral()->getUsername() : null,
+            'inviter' => $user->getReferral() ? $user->getUsername() : null,
             'inviterAvatar' => "/getFile/avatar/60fbf59320494.jpg",
-            'inviterFio' => $user->getReferral() ? $user->getReferral()->getFullName() : null,
+            'inviterFio' => $user->getReferral() ? $user->getFullName() : null,
             'isAdmin' => in_array(UserProfile::ROLE_ADMIN, $user->getRoles()),
             'lastName' => $user->getLastName(),
             'locale' => "ru",
@@ -46,7 +46,7 @@ class UserProfileController extends AbstractController
             'myVk' => null,
             'partners' => 7,
             'phone' => $user->getPhone(),
-            'refLink' => "/sign-up?ref=".$user->getUsername(),
+            'refLink' => "/Sign_up?ref=".$user->getUsername(),
             'registrationDate' => "2021-05-20 22:45:11",
             'showInviter' => false,
             'tg' => "",

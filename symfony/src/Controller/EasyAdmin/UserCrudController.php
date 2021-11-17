@@ -26,6 +26,6 @@ class UserCrudController extends AbstractCrudController
         yield TextField::new('username');
         yield EmailField::new('email');
         yield AssociationField::new('referral');
-        yield AssociationField::new('phone');
+        yield TextField::new('phone');
     }
 }
