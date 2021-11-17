@@ -41,7 +41,7 @@ class RegistrationController extends AbstractController
         $user->setEmail($data['email']);
         $user->setFirstName($data['first_name']);
         $user->setLastName($data['last_name']);
-        $user->setReferral($data['referral']);
+
 
         $username = $this->userProfileRepository->findOneByUsername($data['username']);
         if ($username) {
