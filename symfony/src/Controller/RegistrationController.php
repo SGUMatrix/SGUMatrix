@@ -24,7 +24,7 @@ class RegistrationController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
 
-        if (!$data['password'] || !$data['username']  || !$data['first_name']  || !$data['last_name']  || !$data['email']  || !$data['phone']) {
+        if (!$data['password'] || !$data['username']  || !$data['first_name']  || !$data['last_name']  || !$data['email']  || !$data['phone'] || !$data['referral']) {
             return new JsonResponse(['success' => false, 'message' => 'Заполните все поля']);
         }
 
