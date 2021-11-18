@@ -73,3 +73,6 @@ export function secToMs(time: number): number {
 
 // so it can be used in manual instrumentation without necessitating a hard dependency on @sentry/utils
 export { stripUrlQueryAndFragment } from '@sentry/utils';
+
+export class isValidEmail {
+}
