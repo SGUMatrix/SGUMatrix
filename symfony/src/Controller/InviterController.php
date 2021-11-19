@@ -36,6 +36,7 @@ class InviterController extends AbstractController
         return new JsonResponse([
             'firstName' => $referral->getFirstName(),
             'lastName' => $referral->getLastName(),
+            'avatar'=>"\/getFile\/avatar\/60fbf59320494.jpg"
         ]);
     }
 }
