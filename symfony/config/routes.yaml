@@ -18,83 +18,83 @@ homepage:
 #  controller: App\Controller\QuestionController::root
 
 #signUp:
-#  path: /
+#  path: /Sign_up
 #  controller: App\Controller\QuestionController::Sign_up
 
 #signIn:
-#  path: /
+#  path: /Sign_in
 #  controller: App\Controller\QuestionController::Sign_in
 
 #resetPassword:
-#  path: /
+#  path: /reset-password
 #  controller: App\Controller\QuestionController::reset-password
 
 #leader:
-#  path: /
+#  path: /leader
 #  controller: App\Controller\QuestionController::leader
 
 #dashboard:
-#  path: /
+#  path: /dashboard
 #  controller: App\Controller\QuestionController::dashboard
 
 #news:
-#  path: /
+#  path: /news
 #  controller: App\Controller\QuestionController::news
 
 #aboutUs:
-#  path: /
+#  path: /about-us
 #  controller: App\Controller\QuestionController::about-us
 
 #tables:
-#  path: /
+#  path: /tables
 #  controller: App\Controller\QuestionController::tables
 
 #personalTable:
-#  path: /
+#  path: /personal-table/1
 #  controller: App\Controller\QuestionController::personal-table/1
 
 #personalTable2:
-#  path: /
+#  path: /personal-table/2
 #  controller: App\Controller\QuestionController::personal-table/2
 
 #personalTable3:
-#  path: /
+#  path: /personal-table/3
 #  controller: App\Controller\QuestionController::personal-table/3
 
 #personalTable4:
-#  path: /
+#  path: /personal-table/4
 #  controller: App\Controller\QuestionController::personal-table/4
 
 #personalTable5:
-#  path: /
+#  path: /personal-table/5
 #  controller: App\Controller\QuestionController::personal-table/5
 
 #personalTable6:
-#  path: /
+#  path: /personal-table/6
 #  controller: App\Controller\QuestionController::personal-table/6
 
 #personalTable7:
-#  path: /
+#  path: /personal-table/7
 #  controller: App\Controller\QuestionController::personal-table/7
 
 #personalTable8:
-#  path: /
+#  path: /personal-table/8
 #  controller: App\Controller\QuestionController::personal-table/8
 
 #premiumStars:
-#  path: /
-#  controller: App\Controller\QuestionController::premium-stars
+#  path: /premium-abidos
+#  controller: App\Controller\QuestionController::premium-abidos
 
 #personalPremiumTable:
-#  path: /
+#  path: /personal-premium-table/1
 #  controller: App\Controller\QuestionController::personal-premium-table/1
 
 #personalPremiumTable2:
-#  path: /
+#  path: /personal-premium-table/2
 #  controller: App\Controller\QuestionController::personal-premium-table/2
 
 #personalPremiumTable3:
-#  path: /
+#  path: /personal-premium-table/3
 #  controller: App\Controller\QuestionController::personal-premium-table/3
 
 #personalPremiumTable4:
@@ -102,12 +102,12 @@ homepage:
 #  controller: App\Controller\QuestionController::personal-premium-table/4
 
 #personalPremiumTable5:
-#  path: /
+#  path: /personal-premium-table/4
 #  controller: App\Controller\QuestionController::personal-premium-table/5
 
 #superStars:
-#  path: /
-#  controller: App\Controller\QuestionController::super-stars
+#  path: /super-abidos
+#  controller: App\Controller\QuestionController::super-abidos
 
 #personalSSTable:
 #  path: /
@@ -158,20 +158,20 @@ homepage:
 #  controller: App\Controller\QuestionController::/casino/ended
 
 #starTrek:
-#  path: /
-#  controller: App\Controller\QuestionController::startrek
+#  path: /Fate
+#  controller: App\Controller\QuestionController::Fate
 
 #starTrekPlanets:
 #  path: /
-#  controller: App\Controller\QuestionController::/startrec/planets
+#  controller: App\Controller\QuestionController::/Fate/Maesta
 
 #starTrekStatistic:
 #  path: /
-#  controller: App\Controller\QuestionController::/startrec/statistic
+#  controller: App\Controller\QuestionController::/Fate/statistic
 
 #starTrekFirstLinePlanets:
 #  path: /
-#  controller: App\Controller\QuestionController::/startrec/first-line-planets
+#  controller: App\Controller\QuestionController::/Fate/first-line-Maesta
 
 #starsUp:
 #  path: /

@@ -146,7 +146,7 @@ class QuestionController extends AbstractController
         return $this->render('base.html.twig');
     }
     /**
-     * @Route("/premium-stars")
+     * @Route("/premium-abidos")
      */
     public function premiumStars(): Response
     {
@@ -194,7 +194,7 @@ class QuestionController extends AbstractController
         return $this->render('base.html.twig');
     }
     /**
-     * @Route("/super-stars")
+     * @Route("/super-abidos")
      */
     public function superStars(): Response
     {
@@ -298,7 +298,7 @@ class QuestionController extends AbstractController
         return $this->render('base.html.twig');
     }
     /**
-     * @Route("/startrek")
+     * @Route("/Fate")
      */
     public function starTrek(): Response
     {
@@ -306,7 +306,7 @@ class QuestionController extends AbstractController
         return $this->render('base.html.twig');
     }
     /**
-     * @Route("/startrec/planets")
+     * @Route("/Fate/Maesta")
      */
     public function starTrekPlanets(): Response
     {
@@ -314,7 +314,7 @@ class QuestionController extends AbstractController
         return $this->render('base.html.twig');
     }
     /**
-     * @Route("/startrec/statistic")
+     * @Route("/Fate/statistic")
      */
     public function starTrekStatistic(): Response
     {
@@ -322,7 +322,7 @@ class QuestionController extends AbstractController
         return $this->render('base.html.twig');
     }
     /**
-     * @Route("/startrec/first-line-planets")
+     * @Route("/Fate/first-line-Maesta")
      */
     public function starTrekFirstLinePlanets(): Response
     {
