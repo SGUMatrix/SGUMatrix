@@ -55,5 +55,8 @@ class UserProfileController extends AbstractController
             'userOnLink' => 0,
             'vk' => "",
         ]);
+        if (!$user) {
+            return new JsonResponse(['success' => false, 'message' => 'Неверный Логин или Пароль']);
+        }
     }
 }
