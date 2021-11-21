@@ -45,7 +45,6 @@ class UserProfileController extends AbstractController
             'myTg' => null,
             'myVk' => null,
             'partners' => 7,
-            'phone' => $user->getPhone(),
             'refLink' => "/Sign_up?ref=".$user->getUsername(),
             'registrationDate' => "2021-05-20 22:45:11",
             'showInviter' => false,
@@ -55,8 +54,6 @@ class UserProfileController extends AbstractController
             'userOnLink' => 0,
             'vk' => "",
         ]);
-        if (!$user) {
-            return new JsonResponse(['success' => false, 'message' => 'Неверный Логин или Пароль']);
-        }
+
     }
 }
