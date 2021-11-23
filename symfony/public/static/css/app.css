@@ -19084,7 +19084,7 @@ video {
 }
 
 .page .solar-system__planet--1 {
-    width: 110px
+    width: 200px
 }
 
 .page .solar-system__planet--2 {
@@ -19111,7 +19111,7 @@ video {
     width: 185px
 }
 
-@media (max-width: 1240px) {
+@media (max-width: 124px) {
     .page .solar-system__planet {
         width:auto
     }
