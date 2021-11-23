@@ -30,7 +30,6 @@ class UserProfileController extends AbstractController
             'firstLine' => 7,
             'firstName' => $user->getFirstName(),
             'hasFinPassword' => true,
-            'id' => $user->getId(),
             'income' => 37075,
             'instagram' => "",
             'inviter' => $user->getReferral() ? $user->getReferral()->getUsername() : null,
@@ -53,6 +52,7 @@ class UserProfileController extends AbstractController
             'transferBalance' => 0,
             'userOnLink' => 0,
             'vk' => "",
+
         ]);
 
     }
