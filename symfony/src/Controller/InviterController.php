@@ -29,17 +29,15 @@ class InviterController extends AbstractController
         $username = $request->query->get('username');
         $referral = $this->userProfileRepository->findOneByUsername($username);
 
-
+        if (!$referral) {
+            return new JsonResponse(['success' => false, 'message' => 'Наставник с таким логином не существует']);
+        }
 
         return new JsonResponse([
             'firstName' => $referral->getFirstName(),
             'lastName' => $referral->getLastName(),
             'avatar'=>"\/getFile\/avatar\/60fbf59320494.jpg"
-
         ]);
-        if (!$referral) {
-            return new JsonResponse(['success' => false, 'message' => 'Наставник с таким логином не существует']);
-        }
     }
 
 }

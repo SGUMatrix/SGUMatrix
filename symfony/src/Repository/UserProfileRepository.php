@@ -63,6 +63,20 @@ class UserProfileRepository extends ServiceEntityRepository implements PasswordU
     }
 
     /**
+     * @param UserProfile $user
+     * @return UserProfile[]
+     */
+    public function findEveryoneIInvited(UserProfile $user): array
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.referral = :user')
+            ->setParameter('user', $user)
+            ->orderBy('u.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
      * @param string $username
      * @return UserProfile|null
      */

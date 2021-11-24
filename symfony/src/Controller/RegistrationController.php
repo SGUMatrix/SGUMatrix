@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Statistic;
 use App\Entity\UserProfile;
 use App\Repository\UserProfileRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -64,6 +65,14 @@ class RegistrationController extends AbstractController
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);
+
+        $statistic = new Statistic();
+        $statistic->setUserProfile($user);
+
+        $user->setStatistic($statistic);
+
+        $entityManager->persist($statistic);
+
         $entityManager->flush();
 
         return new JsonResponse(['success' => true]);

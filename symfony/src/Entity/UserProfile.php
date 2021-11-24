@@ -4,8 +4,10 @@ namespace App\Entity;
 
 use App\Repository\UserProfileRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use DateTime;
 
 /**
  * @ORM\Entity(repositoryClass=UserProfileRepository::class)
@@ -38,7 +40,14 @@ class UserProfile implements UserInterface, PasswordAuthenticatedUserInterface
     private string $password;
 
     /**
-     * @ORM\OneToOne(targetEntity=UserProfile::class, cascade={"persist", "remove"})
+     * @var string|null
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private ?string $financePassword;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=UserProfile::class, inversedBy="user_profile")
+     * @ORM\JoinColumn(name="referral_id", referencedColumnName="id")
      */
     private ?UserProfile $referral;
 
@@ -63,9 +72,69 @@ class UserProfile implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $phone;
 
     /**
+     * @ORM\OneToOne(targetEntity=Statistic::class, inversedBy="userProfile")
+     * @ORM\JoinColumn(name="statistic_id", referencedColumnName="id")
+     */
+    private Statistic $statistic;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $instagram;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $telegram;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $vkontakte;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $description;
+
+    /**
+     * @var int
+     * @ORM\Column(type="integer", options={"default" : 0})
+     */
+    private int $balance = 0;
+
+    /**
+     * @var int|null
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private ?int $transitBalance;
+
+    /**
+     * @var DateTime
+     * @ORM\Column(type="datetime")
+     */
+    private DateTime $registrationDate;
+
+    /**
+     * @var DateTime|null
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private ?DateTime $activationDate;
+
+    /**
+     * @var File|null
+     */
+    private ?File $avatar;
+
+    /**
      * @ORM\Column(type="boolean")
      */
     private bool $isVerified = true;
+
+    public function __construct()
+    {
+        $this->registrationDate = new DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -229,4 +298,184 @@ class UserProfile implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->firstName.' '.$this->lastName;
     }
+
+    /**
+     * @return Statistic
+     */
+    public function getStatistic(): Statistic
+    {
+        return $this->statistic;
+    }
+
+    /**
+     * @param Statistic $statistic
+     * @return UserProfile
+     */
+    public function setStatistic(Statistic $statistic): self
+    {
+        $this->statistic = $statistic;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFinancePassword(): ?string
+    {
+        return $this->financePassword;
+    }
+
+    /**
+     * @param string|null $financePassword
+     */
+    public function setFinancePassword(?string $financePassword): void
+    {
+        $this->financePassword = $financePassword;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getInstagram(): ?string
+    {
+        return $this->instagram;
+    }
+
+    /**
+     * @param string|null $instagram
+     */
+    public function setInstagram(?string $instagram): void
+    {
+        $this->instagram = $instagram;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTelegram(): ?string
+    {
+        return $this->telegram;
+    }
+
+    /**
+     * @param string|null $telegram
+     */
+    public function setTelegram(?string $telegram): void
+    {
+        $this->telegram = $telegram;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getVkontakte(): ?string
+    {
+        return $this->vkontakte;
+    }
+
+    /**
+     * @param string|null $vkontakte
+     */
+    public function setVkontakte(?string $vkontakte): void
+    {
+        $this->vkontakte = $vkontakte;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string|null $description
+     */
+    public function setDescription(?string $description): void
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return int
+     */
+    public function getBalance(): int
+    {
+        return $this->balance;
+    }
+
+    /**
+     * @param int $balance
+     */
+    public function setBalance(int $balance): void
+    {
+        $this->balance = $balance;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getTransitBalance(): ?int
+    {
+        return $this->transitBalance;
+    }
+
+    /**
+     * @param int|null $transitBalance
+     */
+    public function setTransitBalance(?int $transitBalance): void
+    {
+        $this->transitBalance = $transitBalance;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getRegistrationDate(): DateTime
+    {
+        return $this->registrationDate;
+    }
+
+    /**
+     * @param DateTime $registrationDate
+     */
+    public function setRegistrationDate(DateTime $registrationDate): void
+    {
+        $this->registrationDate = $registrationDate;
+    }
+
+    /**
+     * @return DateTime|null
+     */
+    public function getActivationDate(): ?DateTime
+    {
+        return $this->activationDate;
+    }
+
+    /**
+     * @param DateTime|null $activationDate
+     */
+    public function setActivationDate(?DateTime $activationDate): void
+    {
+        $this->activationDate = $activationDate;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getAvatar(): ?File
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @param File|null $avatar
+     */
+    public function setAvatar(?File $avatar): void
+    {
+        $this->avatar = $avatar;
+    }
+
 }

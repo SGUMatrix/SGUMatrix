@@ -15,6 +15,10 @@ class UserProfileController extends AbstractController
         /** @var UserProfile $user */
         $user = $this->getUser();
 
+        if (!$user) {
+            return new JsonResponse(['success' => false, 'message' => 'Неверный Логин или Пароль']);
+        }
+
         return new JsonResponse([
             'activationDate' => "2021-06-24 09:11:13",
             'activePartners' => 7,
@@ -55,8 +59,5 @@ class UserProfileController extends AbstractController
             'userOnLink' => 0,
             'vk' => "",
         ]);
-        if (!$user) {
-            return new JsonResponse(['success' => false, 'message' => 'Неверный Логин или Пароль']);
-        }
     }
 }
