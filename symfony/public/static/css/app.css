@@ -19092,7 +19092,7 @@ video {
 }
 
 .page .solar-system__planet--4 {
-    width: 205px
+    width: 250px
 }
 
 .page .solar-system__planet--5 {
@@ -19126,7 +19126,7 @@ video {
     opacity: 0;
     transform: translateX(-50%);
     width: 240px;
-    background-color: #4b0fb2;
+    background-color: rgba(15, 178, 97, 0.75);
     border-radius: 10px;
     padding: 155px 10px 25px;
     box-sizing: border-box
@@ -20241,19 +20241,19 @@ video {
 }
 
 .circle__point:hover .circle__point-clones,.circle__point:hover .circle__point-count {
-    background-color: #00c3e1
+    background-color: rgba(225, 0, 135, 0.49)
 }
 
 .circle__point:hover .circle__star {
-    color: #00c3e1
+    color: rgba(225, 0, 135, 0.49)
 }
 
 .circle__point--active .circle__point-clones,.circle__point--active .circle__point-count {
-    background-color: #00c3e1
+    background-color: rgba(225, 0, 135, 0.49)
 }
 
 .circle__point--active .circle__star {
-    color: #00c3e1
+    color: rgba(225, 0, 135, 0.49)
 }
 
 .circle__point-clones,.circle__point-count {
@@ -20330,7 +20330,7 @@ video {
     transition: color .3s ease-in;
     line-height: 90px;
     font-size: 90px;
-    color: #8083e6
+    color: rgba(128, 131, 230, 0.43)
 }
 
 @media (min-width: 576px) {
