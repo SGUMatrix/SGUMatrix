@@ -6,12 +6,12 @@ import ReactPaginate from 'react-paginate';
 import isEmpty from 'lodash-es/isEmpty';
 import styles from './Team.module.scss';
 
-import * as actions from 'actions/team.actions';
-import arrowRight from 'static/icons/angle-right.svg';
-import arrowLeft from 'static/icons/angle-left.svg';
-import NavBar from 'components/layout/Navbar';
-import UserInfo from 'components/UserInfo';
-import Spinner from 'components/Spinner';
+import * as actions from '../../../actions/team.actions';
+import arrowRight from '../../../static/icons/angle-right.svg';
+import arrowLeft from '../../../static/icons/angle-left.svg';
+import NavBar from '../../../components/layout/Navbar';
+import UserInfo from '../../../components/UserInfo';
+import Spinner from '../../../components/Spinner';
 import TeamMember from './TeamMember';
 
 function Team() {

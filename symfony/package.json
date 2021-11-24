@@ -3,6 +3,7 @@
         "@symfony/stimulus-bridge": "^2.0.0",
         "@symfony/webpack-encore": "^1.6.1",
         "core-js": "^3.0.0",
+        "react-paginate": "^8.0.0",
         "regenerator-runtime": "^0.13.2",
         "static": "^2.0.0",
         "stimulus": "^2.0.0",

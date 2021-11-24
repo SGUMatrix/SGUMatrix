@@ -58,6 +58,8 @@ class UserProfileController extends AbstractController
             'transferBalance' => 0,
             'userOnLink' => 0,
             'vk' => "",
+
         ]);
+
     }
 }
