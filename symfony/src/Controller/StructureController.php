@@ -11,10 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class StructureController extends AbstractController
 {
-    /**
-     * @var UserProfileRepository
-     */
-    private UserProfileRepository $userProfileRepository;
+
 
     /**
      * @param UserProfileRepository $userProfileRepository
@@ -26,17 +23,12 @@ class StructureController extends AbstractController
     #[Route('/api/structure', name: 'api_structure')]
     public function index(Request $request): JsonResponse
     {
-        /** @var UserProfile $userProfile */
-        $userProfile = $request->query->get('referral');
-        $userProfile = $this->userProfileRepository->findEveryoneIInvited($userProfile);
+        /** @var UserProfileRepository $user */
+        $user= $request->query->get('username');
+$user = $this->userProfileRepository->findEveryoneIInvited($user);
 
 
-        return new JsonResponse(data: array(
-            'id' => $userProfile->getId(),
-            'firstName' => $userProfile->getFirstName(),
-            'lastName' => $userProfile->getLastName(),
-
-        ));
+        return new JsonResponse(data: array('id' => $user->getId(), 'firstName' => $userProfile->getFirstName(), 'lastName' => $userProfile->getLastName()));
     }
 
 }
